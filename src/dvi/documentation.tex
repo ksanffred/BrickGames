@@ -1,0 +1,108 @@
+\documentclass{article}
+\usepackage{enumitem}
+\usepackage{hyperref}
+
+\begin{document}
+
+\title{Documentation for Snake Game v1.0}
+\date{}
+\maketitle
+
+\section{Introduction}
+
+The Snake Game v1.0 project is an implementation of the classic arcade game Snake. The game logic is implemented in C++20, and the project is built on the Model-View-Controller (MVC) architectural pattern. The user interface is available in two forms: a terminal interface and a graphical desktop interface.
+
+\section{Project Structure}
+
+\subsection{The Snake library (\texttt{src/snake\_game})}
+
+\begin{itemize}[label=--]
+    \item Source code files that implement the logic of the game Snake.
+    \item This part represents the Model in the MVC pattern.
+    \item Basic functions for interacting with the game board, controlling the snake, and handling user input.
+    \item Implementation of a finite state machine to formalize the game's logic.
+\end{itemize}
+
+\subsection{Terminal interface (\texttt{src/gui/cli})}
+
+\begin{itemize}[label=--]
+    \item Source code files responsible for visualizing the game in the terminal.
+    \item This part represents the View and Controller for the terminal version.
+    \item Implementation of game field rendering, user input control, and current game state display.
+\end{itemize}
+
+\subsection{Graphical desktop interface (\texttt{src/gui/desktop})}
+
+\begin{itemize}[label=--]
+    \item Source code files for the graphical desktop interface.
+    \item This part is built using the Qt framework, specifically QML for the user interface.
+    \item It represents the View and Controller for the graphical version.
+\end{itemize}
+
+\section{Project Assembly}
+
+The project uses a \texttt{make} build system with a Makefile including the following targets:
+
+\begin{itemize}
+    \item \texttt{all}: To build the project.
+    \item \texttt{install}: Installing the program on the system.
+    \item \texttt{uninstall}: Uninstalling a program from the system.
+    \item \texttt{clean}: Clearing temporary files and folders.
+    \item \texttt{dvi}: Creating a DVI file.
+    \item \texttt{dist}: Create an archive containing the necessary files to build and use the program.
+\end{itemize}
+
+\section{Runtime Environment Requirements}
+
+The project assumes the use of the C++20 programming language, a compatible compiler (like GCC or Clang), and the ncurses and Qt libraries for the terminal and graphical interfaces, respectively.
+
+\section{Instructions for installation and run}
+
+\begin{enumerate}
+    \item \textbf{Installing dependencies:}
+        \begin{itemize}
+            \item Make sure you have a C++20-compatible compiler installed.
+            \item Install the ncurses and Qt libraries.
+        \end{itemize}
+    \item \textbf{Project Build:}
+        \begin{itemize}
+            \item Run \texttt{make all} to build the project.
+        \end{itemize}
+    \item \textbf{Installation:}
+        \begin{itemize}
+            \item Run \texttt{make install} to install the program on the system.
+        \end{itemize}
+    \item \textbf{Run:}
+        \begin{itemize}
+            \item Execute \texttt{make run} to run the program.
+        \end{itemize}
+\end{enumerate}
+
+\section{Using the program}
+
+\begin{enumerate}
+    \item \textbf{Management:}
+        \begin{itemize}
+            \item Use the ARROW KEYS to change the direction of the snake.
+            \item Press P to pause the game.
+            \item Press P again to unpause the game.
+            \item Use ESC to exit the game.
+        \end{itemize}
+    \item \textbf{Game mechanics:}
+        \begin{itemize}
+            \item The snake moves continuously on the field.
+            \item The snake's length increases when it eats an apple.
+            \item A new apple appears randomly on the field after the previous one has been eaten.
+        \end{itemize}
+    \item \textbf{Ending the game:}
+        \begin{itemize}
+            \item The game ends when the snake touches the walls of the field or its own body.
+            \item The player wins when they score 200 points.
+        \end{itemize}
+\end{enumerate}
+
+\section{Testing}
+
+The project includes unit tests. The test coverage of the library is at least 80\%.
+
+\end{document}
