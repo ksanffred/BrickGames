@@ -4,7 +4,8 @@ CFLAGS= -Wall -Werror -Wextra -std=c11
 CXXFLAGS= -Wall -Werror -Wextra -std=c++20
 GCOV_FLAGS= --coverage -fprofile-arcs -ftest-coverage
 LCOV_FLAGS= --no-external --ignore-errors mismatch 
-CHECK_LIB = -lgtest -lgmock -pthread
+GTEST_LIB = -lgtest -lgmock -pthread
+CHECK_LIB = -lcheck -lsubunit -lm -lrt -lpthread
 QT_PATH = -DCMAKE_PREFIX_PATH:PATH=/home/zakharov/Qt/6.9.1/gcc_64
 
 
@@ -27,10 +28,10 @@ dvi:
 	xelatex -output-directory=dvi dvi/documentation.tex
 
 test_snake: $(wildcard tests/*.cc ) snake_back.o
-	$(CXX) $(CXXFLAGS) $^ -o unit_test_snake.out $(CHECK_LIB)
+	$(CXX) $(CXXFLAGS) $^ -o unit_test_snake.out $(GTEST_LIB)
 	./unit_test_snake.out
 
-test_tetris: $(wildcard tests/*.c ) tetris_back.o fsm_tetris.o
+test_tetris: $(wildcard tests/*.c ) tetris_back.o fsm_tetris.o controller_tetris.o
 	$(CC) $(CFLAGS) $^ -o unit_test_tetris.out $(CHECK_LIB)
 	./unit_test_tetris.out
 
@@ -72,7 +73,7 @@ fsm_tetris.o: brick_game/tetris/fsm_tetris.c
 .PHONY: gcov_report formation-clang check-clang cppcheck valgrind fsanitaze
 
 gcov_report: clean 
-	$(CXX) -o unit_test.out $(GCOV_FLAGS) $(CXXFLAGS) tests/*.cc brick_game/snake/snake_back.cc $(CHECK_LIB)
+	$(CXX) -o unit_test.out $(GCOV_FLAGS) $(CXXFLAGS) tests/*.cc brick_game/snake/snake_back.cc $(GTEST_LIB)
 	./unit_test.out
 	lcov -t "unit_test" -o unit_test.info -c -d . $(LCOV_FLAGS)
 	genhtml -o report unit_test.info

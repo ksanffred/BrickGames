@@ -1,65 +1,66 @@
 # BrickGames
 ## Описание
 
-Реализация классических игр Тетрис и Змейка с консольным и десктопными интерфейсами.
+Реализация классических игр Тетрис и Змейка с консольным и десктопным интерфейсами.
 
 ## Реализация
 
 ### Пример работы
 
-![Desktop_Snake_example](misc/images/frogger-game.gif)
+![Desktop_Snake_example](images/Desktop_Snake_example.gif)
 
-![CLI_Tetris_example](misc/images/frogger-game.gif)
+![CLI_Tetris_example](images/CLI_Tetris_example.gif)
 
 ### Бэкенд 
 
 Бизнес-логика игры Тетрис (бэкенд) написана на языке С, сконструирована по модели Конечного Автомата (КА, FSM, Finite-State Machine). Код писался с соблюдением принципов структурного программирования Дейкстры.
 
-![FSM_Tetris](misc/images/frogger-game.png)
+![FSM_Tetris](images/FSM_diagram_tetris.png)
 
 Логика игры Змейки написана на языке С++, так же сконструирована по модели Конечного Автомата. Код писался с соблюдением принципов структурного и в парадигме Объектно-ориентированного программирования.
 
-![FSM_Snake](misc/images/frogger-game.png)
+![FSM_Snake](images/FSM_diagram_snake.png)
 
-![UML_Snake](misc/images/frogger-game.png)
+![UML_Snake](images/UML_Snake.png)
 
 ### Фронтенд
 
-Для игр реализованы два граффических интерфейса.
+Для игр реализованы два граффических интерфейса. Обе игры совместимы с обоими интерфейсами.
 
-CLI — консольный интерфейс написан на С и использует библиотеку ncurses.h.
+CLI — консольный интерфейс c использованием символьной псевдографики написан на С и использует библиотеку ncurses.h.
 
-![CLI_Tetris](misc/images/frogger-game.png)
+![CLI_Tetris](images/CLI_Tetris.png)
 
 Десктопный интерфейс написан на С++ и фреймворке QT, а именное QT.Quick версии 6.9. Используется язык qml для отрисовки, и система сигналов и слотов на таймере для взаимодействия бэка и фронта.
 
-![Desktop_Snake](misc/images/frogger-game.png)
+![Desktop_Snake](images/Desktop_Snake.png)
 
 ### MVC
 
-Проект построен на паттерне Model-View-Controller, то есть отделении логики представления и модели, и соединения их с помощью контроллера.
+Проект построен на паттерне Model-View-Controller, то есть отделении логики представления (view), то есть отображения, и модели (model), то есть бизнес-логики, и соединения их с помощью тонкого контроллера.
+
+### Сборка
+
+Для удобства взаимодествия: полной сборки проекта, запуска тестов, проведения прочих проверок -- существует Makefile. Через него же собираются консольные версии игр. Для сборки десктопных версий используется CMake (с целями в том же Make'е).
 
 Для сборки всех версий игр можно применить единую команду:
 ```
 make install
 ```
 
-### Сборка
-
-Для удобства взаимодествия, полной сборки проекта, запуска тестов, проведения прочих проверок существует Makefile, через него же собираются консольные версии игр, для сборки десктопных версий используется CMake (с целями в том же Make'е).
-
-
 ## Тестирование
 
 Код библиотеки покрыт тестами с помощью библиотеки GTest для С++ и check.h для С, покрытие тестами составляет более 95%, что можно проверить спомощью GCOV.
 
-![TestsTetris](misc/images/tetris-game.png)
+### Тесты тетриса
+![TestsTetris](images/TestsTetris.png)
 
-![TestsSnake](misc/images/tetris-game.png)
+![TestsTetris_cov](images/TestsTetris_cov.png)
 
-![TestsTetris_cov](misc/images/tetris-game.png)
+### Тесты змейки
+![TestsSnake](images/TestsSnake.png)
 
-![TestsSnake_cov](misc/images/tetris-game.png)
+![TestsSnake_cov](images/TestsSnake_cov.png)
 
 На утечки памяти код тестировался с помощью утилит fsanitaze для gcc и valgrind.
 

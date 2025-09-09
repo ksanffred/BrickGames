@@ -127,9 +127,9 @@ TEST(SnakeGameFSM, GameOver_ESC) {
 }
 
 TEST(SnakeGameOutside, Eating) {
-  s21::Game game;
-  s21::GameState state = game.Eating();
-  EXPECT_EQ(state, s21::GameState::SpawnApple);
+  my::Game game;
+  my::GameState state = game.Eating();
+  EXPECT_EQ(state, my::GameState::SpawnApple);
   game.RefreshSnake();
   GameInfo_t info = game.GiveGameInfo();
   EXPECT_EQ(5, info.score);
